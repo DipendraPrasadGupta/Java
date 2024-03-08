@@ -1,0 +1,47 @@
+import java.util.Arrays;
+class Solution {
+    public int maxFrequencyElements(int[] nums) {
+        if(nums==null || nums.length==0)
+        {
+            return 0;
+        }
+        Arrays.sort(nums);
+        int max_feq=1;
+        int cur_feq=1;
+        for(int i=1; i<nums.length; i++)
+        {
+            if(nums[i] == nums[i-1])
+            {
+                cur_feq++;
+            }
+            else
+            {
+                cur_feq=1;
+            }
+            max_feq=Math.max(max_feq,cur_feq);
+        }
+        if(max_feq==1)
+        {
+            return nums.length;
+        }
+
+        int count=0;
+        cur_feq=1;
+        for(int i=1; i<nums.length; i++)
+        {
+            if(nums[i]==nums[i-1])
+            {
+                cur_feq++;
+            }
+            else
+            {
+                cur_feq=1;
+            }
+            if(max_feq==cur_feq)
+            {
+                count=count+cur_feq;
+            }
+        }
+        return count;
+    }
+}
